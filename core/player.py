@@ -10,53 +10,42 @@ playlist外置
 """
 
 import logging
-import mpv
+import lib.mpv as mpv
 import os
-from enum import IntEnum
 
 logger = logging.getLogger(__name__)
 
-
-class State(IntEnum):
-    """
-    Player states.
-    """
-    stopped = 0
-    paused = 1
-    playing = 2
-
-
 class MusicPlayer():
 
-    def __index__(self):
-        self.player = mpv.MPV(ytdl=True,
+    def __init__(self):
+        self.mpv_player = mpv.MPV(ytdl=True,
                               input_default_bindings=True,
                               input_vo_keyboard=True)
-        self.player._event_callbacks.append(self.on_event)
+        self.mpv_player._event_callbacks.append(self.on_event)
         self.playlist_current = 0
-        self.state = State.stopped
         self.playlist = []
 
     def play(self):
-        self.player.playlist_clear()
-        self.player.play(self.current_song())
-        self.player.pause = False
-        self.state = State.playing
+        song = self.current_song()
+        logging.info("try to play {}".format(song))
+        self.mpv_player.playlist_clear()
+        self.mpv_player.play(song)
+        self.mpv_player.pause = False
 
 
     def load(self, playlist):
-        if (playlist is not None and len(playlist) > 0):
+        try:
 
-            # self.player.pause = True
-            self.player.pause = True
-            self.playlist = playlist
-            self.play()
-
-        else:
-            return 0
-
-
-
+            if (playlist is not None and len(playlist) > 0):
+                logging.info("try load playlist")
+                # self.player.pause = True
+                self.mpv_player.pause = True
+                self.playlist = playlist
+                self.play()
+            else:
+                logging.error("load empty playlist")
+        except:
+            print("load error")
 
     def current_song(self):
         if self.playlist is not None and len(self.playlist) > 0:
@@ -86,21 +75,24 @@ class MusicPlayer():
                     self.playlist_current = self.playlist_current - 1
 
     def next(self):
-        if self.state == State.playing:
-            self.playlist_current_changed("next")
-            self.play()
+        self.mpv_player.pause = True
+        self.playlist_current_changed("next")
+        self.play()
 
     def pre(self):
-        if self.state == State.playing:
-            self.playlist_current_changed("pre")
-            self.play()
+        self.mpv_player.pause = False
+        self.playlist_current_changed("pre")
+        self.play()
 
+    def pause(self):
+        if (self.mpv_player.pause) :
+            self.mpv_player.pause = False
+        else:
+            self.mpv_player.pause = True
 
     def on_event(self, event):
         if event['event_id'] == mpv.MpvEventID.END_FILE:
             reason = event['event']['reason']
             logger.debug("current song finished. reason: {}".format(reason))
-            if self.state != State.stopped and reason != mpv.MpvEventEndFile.ABORTED:
-                self.song_finished.emit()
-
-
+            if reason != mpv.MpvEventEndFile.ABORTED:
+                self.next()
