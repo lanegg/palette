@@ -52,4 +52,6 @@ def scan():
             result_count = count
             match_album = album_path
 
+    logging.info("scan result count {}".format(result_count))
+
     return lib.library.albums[match_album]
