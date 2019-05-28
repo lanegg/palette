@@ -9,11 +9,6 @@ import os
 import core.processor as processor
 import core.utils as utils
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-                    datefmt='%a, %d %b %Y %H:%M:%S',
-                    filemode='w')
-
 class Album():
 
     def __init__(self, path):
