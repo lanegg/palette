@@ -6,30 +6,32 @@
 """
 
 import logging
-import yaml
 import os
 import core.utils as utils
+import core.album as album
+import core.processor as processor
 
 logger = logging.getLogger(__name__)
+
+
 
 class Library():
 
     def __init__(self):
-        self.covers = []
+        self.albums = {}
 
 
-    def load_all_covers(self):
+    def load_all_albums(self):
 
         for maindir, subdir, file_name_list in os.walk(utils.config["media_path"]):
             # list all media
             for filename in file_name_list:
                 # find cover
                 if 'cover.jpg' == filename:
-                    apath = os.path.join(maindir, filename)
-                    self.covers.append(apath)
+                    _album = album.Album(maindir)
+                    _album.initialization()
+                    self.albums[maindir] = _album
+
 
 
 library = Library()
-library.load_all_covers()
-print(library.covers)
-
