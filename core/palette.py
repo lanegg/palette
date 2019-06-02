@@ -5,11 +5,16 @@ palette
 
 
 """
-
+import sys
+import os
+curPath = os.path.abspath(os.path.dirname(__file__))
+rootPath = os.path.split(curPath)[0]
+sys.path.append(rootPath)
 import logging
 from core.player import MusicPlayer
 import core.library as lib
 import core.processor as processor
+
 
 
 def palette():
@@ -39,4 +44,4 @@ def palette():
 
 
 if __name__ == '__main__':
-    palette()
+    sys.path.append()
