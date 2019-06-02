@@ -19,3 +19,5 @@ logging.basicConfig(level=logging.DEBUG,
 with open(root_path + "/palette.yml", encoding='UTF-8') as config_file:
     config = yaml.load(config_file)
 
+
+
