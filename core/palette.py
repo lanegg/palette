@@ -10,21 +10,27 @@ import os
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
 sys.path.append(rootPath)
-import logging
 from core.player import MusicPlayer
 import core.library as lib
 import core.processor as processor
 
+import logging
+
+logger = logging.getLogger("__name__")
 
 
 def palette():
 
+    logger.info("start palette")
+
     player = MusicPlayer()
-    command = ""
+    logger.info("player was loaded")
 
     library = lib.library
     library.load_all_albums()
+    logger.info("library was loaded")
 
+    command = ""
     while command != "quit":
 
         if command == "load":
@@ -44,4 +50,4 @@ def palette():
 
 
 if __name__ == '__main__':
-    sys.path.append()
+    palette()
