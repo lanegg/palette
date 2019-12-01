@@ -5,4 +5,4 @@ media_path: "/Users/lanegg/Music/library"
 #音乐文件类型
 media_types: ['mp3', 'flac']
 
-debug_photo_path: "/data/code/palette/data/test_img/cover.jpg"
+debug_photo_path: "/data/project/palette/data/test_img/cover.jpg"

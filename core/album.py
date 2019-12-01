@@ -9,6 +9,7 @@ import os
 import core.processor as processor
 import core.utils as utils
 
+
 class Album():
 
     def __init__(self, path):
@@ -20,7 +21,6 @@ class Album():
         self.cover_path = os.path.join(self.path, "cover.jpg")
         self.load_songs()
         self.features = processor.build_features(self.cover_path)
-
 
     def load_songs(self):
         files = os.listdir(self.path)

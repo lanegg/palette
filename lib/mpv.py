@@ -33,7 +33,7 @@ if os.name == 'nt':
 else:
     import locale
     lc, enc = locale.getlocale(locale.LC_NUMERIC)
-    # libmpv requires LC_NUMERIC to be set to "C". Since messing with global variables everyone else relies upon is
+    # libmpv requires LC_NUMERIC to ls set to "C". Since messing with global variables everyone else relies upon is
     # still better than segfaulting, we are setting LC_NUMERIC to "C".
     locale.setlocale(locale.LC_NUMERIC, 'C')
 

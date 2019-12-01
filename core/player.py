@@ -33,10 +33,8 @@ class MusicPlayer():
         self.mpv_player.play(song)
         self.mpv_player.pause = False
 
-
     def load(self, album:Album):
         try:
-
             if (album.is_not_empty()):
                 logging.info("try load album")
                 # self.player.pause = True
