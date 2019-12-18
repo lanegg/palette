@@ -10,9 +10,9 @@ playlist外置
 """
 
 import logging
-import lib.mpv as mpv
+import mpv as mpv
 import os
-from core.album import Album
+from album import Album
 
 logger = logging.getLogger(__name__)
 

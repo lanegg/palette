@@ -9,6 +9,7 @@ import yaml
 #root path
 root_path = os.path.abspath(os.path.join(os.path.dirname("__file__"),os.path.pardir))
 
+print("root_path:" + root_path)
 #logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
@@ -17,7 +18,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 #config json
 with open(root_path + "/palette.yml", encoding='UTF-8') as config_file:
-    config = yaml.load(config_file)
+    config = yaml.load(config_file, Loader=yaml.FullLoader)
 
 
 

@@ -7,9 +7,9 @@
 
 import logging
 import os
-import core.utils as utils
-import core.album as album
-import core.processor as processor
+import album as album
+import processor as processor
+import utils as utils
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +19,6 @@ class Library():
 
     def __init__(self):
         self.albums = {}
-
 
     def load_all_albums(self):
 

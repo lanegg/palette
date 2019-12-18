@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 #专辑文件目录
-media_path: "/Users/lanegg/Music/library"
+media_path: "/home/pi/library"
 #音乐文件类型
 media_types: ['mp3', 'flac']
 
-debug_photo_path: "/data/project/palette/data/test_img/cover.jpg"
+debug_photo_path: "/usr/local/mlp/palette/data/test_img/cover.jpg"
