@@ -7,7 +7,7 @@ requires = [
     "PyYAML",
     "nose",
     "numpy",
-    "opencv-contrib-python==3.4.2.16"
+    "opencv-contrib-python==4.2.0.32"
 ]
 
 setup(
